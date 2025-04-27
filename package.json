@@ -2,10 +2,10 @@
   "name": "oxi-backend",
   "version": "1.0.0",
   "description": "Este es el Backend API para la aplicación [OXI](https://github.com/tu-frontend-repo) - el Carbon Footprint Manager 🌱.",
-  "main": "index.js",
+  "main": "Server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon Server.js"
   },
   "repository": {
     "type": "git",

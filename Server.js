@@ -17,10 +17,14 @@ async function start() {
     await sequelize.authenticate();
     console.log('🟢 Database connected!');
     await sequelize.sync();
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    if (process.env.VERCEL !== '1') {
+      app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    }
   } catch (error) {
     console.error('❌ Unable to connect to the database:', error);
   }
 }
 
 start();
+
+module.exports = app;
