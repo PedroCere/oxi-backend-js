@@ -10,21 +10,11 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 
-const PORT = process.env.PORT || 3000;
+// Connect to database once when the module is loaded
+sequelize.authenticate()
+  .then(() => console.log('🟢 Database connected!'))
+  .catch(err => console.error('❌ Unable to connect to the database:', err));
 
-async function start() {
-  try {
-    await sequelize.authenticate();
-    console.log('🟢 Database connected!');
-    await sequelize.sync();
-    if (process.env.VERCEL !== '1') {
-      app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-    }
-  } catch (error) {
-    console.error('❌ Unable to connect to the database:', error);
-  }
-}
-
-start();
+// Do not call sequelize.sync() in serverless environment
 
 module.exports = app;
